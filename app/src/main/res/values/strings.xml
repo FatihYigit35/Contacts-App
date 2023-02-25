@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Contacts App</string>
+    <string name="name">Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="update">Update</string>
+    <string name="save">Save</string>
+    <string name="search">Search</string>
+    <string name="delete">Delete</string>
+    <string name="yes">YES</string>
+</resources>
