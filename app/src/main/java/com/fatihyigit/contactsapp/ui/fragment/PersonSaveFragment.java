@@ -3,6 +3,7 @@ package com.fatihyigit.contactsapp.ui.fragment;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -17,21 +18,15 @@ public class PersonSaveFragment extends Fragment {
     private FragmentPersonSaveBinding binding;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentPersonSaveBinding.inflate(inflater, container, false);
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_person_save, container, false);
 
-        binding.toolbarPersonSave.setTitle("New Person Save");
-
-        binding.buttonSave.setOnClickListener(v -> {
-            String person_name = binding.editTextName.getText().toString();
-            String person_phone = binding.editTextPhone.getText().toString();
-
-            save(person_name,person_phone);
-        });
+        binding.setPersonSaveFragment(this);
+        binding.setToolbarPersonSaveTitle("New Person Save");
 
         return binding.getRoot();
     }
 
-    public void save(String name, String phone){
+    public void buttonSave(String name, String phone){
         Log.e("Person", name + " - " + phone);
     }
 }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,7 +18,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
-public class PersonsAdapter extends RecyclerView.Adapter<PersonsAdapter.CardViewHolder>{
+public class PersonsAdapter extends RecyclerView.Adapter<PersonsAdapter.CardViewHolder> {
     private Context mContext;
     private List<Persons> persons;
 
@@ -30,7 +31,7 @@ public class PersonsAdapter extends RecyclerView.Adapter<PersonsAdapter.CardView
     @Override
     public CardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(mContext);
-        CardDesignBinding binding = CardDesignBinding.inflate(layoutInflater,parent,false);
+        CardDesignBinding binding = DataBindingUtil.inflate(layoutInflater, R.layout.card_design, parent, false);
         return new CardViewHolder(binding);
     }
 
@@ -39,13 +40,12 @@ public class PersonsAdapter extends RecyclerView.Adapter<PersonsAdapter.CardView
         Persons person = persons.get(position);
         CardDesignBinding b = holder.binding;
 
-        b.textViewCardName.setText(person.getPerson_name());
-        b.textViewCardPhone.setText(person.getPerson_phone());
+        b.setPersonObject(person);
 
         b.imageViewDelete.setOnClickListener(v -> {
-            Snackbar.make(v,person.getPerson_name() + " " + mContext.getResources().getString(R.string.delete) + "?",Snackbar.LENGTH_LONG)
-                    .setAction(mContext.getResources().getString(R.string.yes),v1 -> {
-                        Log.e("Person delete",String.valueOf(person.getPerson_id()));
+            Snackbar.make(v, person.getPerson_name() + " " + mContext.getResources().getString(R.string.delete) + "?", Snackbar.LENGTH_LONG)
+                    .setAction(mContext.getResources().getString(R.string.yes), v1 -> {
+                        Log.e("Person delete", String.valueOf(person.getPerson_id()));
                     }).show();
         });
 

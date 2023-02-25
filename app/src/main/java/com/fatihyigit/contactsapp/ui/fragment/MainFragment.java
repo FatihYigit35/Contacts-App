@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.view.MenuProvider;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,12 +31,11 @@ public class MainFragment extends Fragment implements SearchView.OnQueryTextList
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentMainBinding.inflate(inflater, container, false);
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_main, container, false);
 
-        binding.toolbarMain.setTitle("Contacts");
+        binding.setMainFragment(this);
+        binding.setToolbarMainTitle("Contacts");
         ((AppCompatActivity) getActivity()).setSupportActionBar(binding.toolbarMain); //action bar definition for search feature to work
-
-        binding.rv.setLayoutManager(new LinearLayoutManager(requireContext()));
 
         ArrayList<Persons> persons = new ArrayList<>();
 
@@ -50,11 +50,7 @@ public class MainFragment extends Fragment implements SearchView.OnQueryTextList
         persons.add(p4);
 
         PersonsAdapter adapter = new PersonsAdapter(requireContext(),persons);
-        binding.rv.setAdapter(adapter);
-
-        binding.fab.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.actionFragment_main_to_personSave);
-        });
+        binding.setPersonsAdapter(adapter);
 
         requireActivity().addMenuProvider(new MenuProvider() {
             @Override
@@ -74,6 +70,10 @@ public class MainFragment extends Fragment implements SearchView.OnQueryTextList
         });
 
         return binding.getRoot();
+    }
+
+    public void fabClick(View v){
+        Navigation.findNavController(v).navigate(R.id.actionFragment_main_to_personSave);
     }
 
     @Override

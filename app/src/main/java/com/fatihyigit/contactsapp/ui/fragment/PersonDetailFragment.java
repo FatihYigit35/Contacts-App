@@ -3,6 +3,7 @@ package com.fatihyigit.contactsapp.ui.fragment;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -19,28 +20,19 @@ public class PersonDetailFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentPersonDetailBinding.inflate(inflater, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_person_detail, container, false);
 
-        binding.toolbarPersonUpdate.setTitle("Person Detail");
+        binding.setPersonDetailFragment(this);
+        binding.setToolbarPersonDetailTitle("Person Detail");
 
         PersonDetailFragmentArgs bundle = PersonDetailFragmentArgs.fromBundle(getArguments());
-
         Persons person = bundle.getPerson();
-
-        binding.editTextDetailName.setText(person.getPerson_name());
-        binding.editTextDetailPhone.setText(person.getPerson_phone());
-
-        binding.buttonUpdate.setOnClickListener(v -> {
-            String person_name = binding.editTextDetailName.getText().toString();
-            String person_phone = binding.editTextDetailPhone.getText().toString();
-
-            update(person.getPerson_id(), person_name, person_phone);
-        });
+        binding.setPersonObject(person);
 
         return binding.getRoot();
     }
 
-    public void update(int id, String name, String phone) {
+    public void buttonUpdate(int id, String name, String phone) {
         Log.e("Person update", id + " - " + name + " - " + phone);
     }
 
