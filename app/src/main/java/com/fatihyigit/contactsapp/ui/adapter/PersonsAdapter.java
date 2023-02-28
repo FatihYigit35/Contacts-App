@@ -14,6 +14,7 @@ import com.fatihyigit.contactsapp.R;
 import com.fatihyigit.contactsapp.data.entity.Persons;
 import com.fatihyigit.contactsapp.databinding.CardDesignBinding;
 import com.fatihyigit.contactsapp.ui.fragment.MainFragmentDirections;
+import com.fatihyigit.contactsapp.ui.viewModel.MainViewModel;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
@@ -21,10 +22,12 @@ import java.util.List;
 public class PersonsAdapter extends RecyclerView.Adapter<PersonsAdapter.CardViewHolder> {
     private Context mContext;
     private List<Persons> persons;
+    private MainViewModel viewModel;
 
-    public PersonsAdapter(Context mContext, List<Persons> persons) {
+    public PersonsAdapter(Context mContext, List<Persons> persons, MainViewModel viewModel) {
         this.mContext = mContext;
         this.persons = persons;
+        this.viewModel = viewModel;
     }
 
     @NonNull
@@ -45,7 +48,7 @@ public class PersonsAdapter extends RecyclerView.Adapter<PersonsAdapter.CardView
         b.imageViewDelete.setOnClickListener(v -> {
             Snackbar.make(v, person.getPerson_name() + " " + mContext.getResources().getString(R.string.delete) + "?", Snackbar.LENGTH_LONG)
                     .setAction(mContext.getResources().getString(R.string.yes), v1 -> {
-                        Log.e("Person delete", String.valueOf(person.getPerson_id()));
+                        viewModel.delete(person.getPerson_id());
                     }).show();
         });
 
