@@ -1,12 +1,20 @@
 package com.fatihyigit.contactsapp.di;
 
-import com.fatihyigit.contactsapp.data.repository.PersonsDao;
+import android.content.Context;
+
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
+
+import com.fatihyigit.contactsapp.data.repository.PersonsDaoRepository;
+import com.fatihyigit.contactsapp.room.PersonsDao;
+import com.fatihyigit.contactsapp.room.PersonsDatabase;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
+import dagger.hilt.android.qualifiers.ApplicationContext;
 import dagger.hilt.components.SingletonComponent;
 
 @Module
@@ -14,7 +22,16 @@ import dagger.hilt.components.SingletonComponent;
 public class AppModule {
     @Provides
     @Singleton
-    public PersonsDao providesPersonsDao() {
-        return new PersonsDao();
+    public PersonsDaoRepository providesPersonsDaoRepository(PersonsDao personsDao) {
+        return new PersonsDaoRepository(personsDao);
+    }
+
+    @Provides
+    @Singleton
+    public PersonsDao providesPersonsDao(@ApplicationContext Context context) {
+        PersonsDatabase db = Room.databaseBuilder(context,PersonsDatabase.class,"directory.sqlite")
+                .createFromAsset("directory.sqlite") //copy from file
+                .build();
+        return db.getPersonsDao();
     }
 }

@@ -2,7 +2,7 @@ package com.fatihyigit.contactsapp.ui.viewModel;
 
 import androidx.lifecycle.ViewModel;
 
-import com.fatihyigit.contactsapp.data.repository.PersonsDao;
+import com.fatihyigit.contactsapp.data.repository.PersonsDaoRepository;
 
 import javax.inject.Inject;
 
@@ -10,14 +10,14 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 
 @HiltViewModel
 public class PersonDetailViewModel  extends ViewModel {
-    private PersonsDao personsDao;
+    private PersonsDaoRepository personsDaoRepository;
 
     @Inject
-    public PersonDetailViewModel(PersonsDao personsDao){
-        this.personsDao = personsDao;
+    public PersonDetailViewModel(PersonsDaoRepository personsDaoRepository){
+        this.personsDaoRepository = personsDaoRepository;
     }
 
     public void update(int id, String name, String phone) {
-        personsDao.personUpdate(id, name, phone);
+        personsDaoRepository.personUpdate(id, name, phone);
     }
 }
