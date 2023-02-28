@@ -1,13 +1,21 @@
 package com.fatihyigit.contactsapp.ui.viewModel;
 
-import android.util.Log;
-
 import androidx.lifecycle.ViewModel;
 
 import com.fatihyigit.contactsapp.data.repository.PersonsDao;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.lifecycle.HiltViewModel;
+
+@HiltViewModel
 public class PersonDetailViewModel  extends ViewModel {
-    private PersonsDao personsDao = new PersonsDao();
+    private PersonsDao personsDao;
+
+    @Inject
+    public PersonDetailViewModel(PersonsDao personsDao){
+        this.personsDao = personsDao;
+    }
 
     public void update(int id, String name, String phone) {
         personsDao.personUpdate(id, name, phone);

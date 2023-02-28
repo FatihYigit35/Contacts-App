@@ -1,21 +1,25 @@
 package com.fatihyigit.contactsapp.ui.viewModel;
 
-import android.util.Log;
-
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.fatihyigit.contactsapp.data.entity.Persons;
 import com.fatihyigit.contactsapp.data.repository.PersonsDao;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.lifecycle.HiltViewModel;
+
+@HiltViewModel
 public class MainViewModel extends ViewModel {
-    private final PersonsDao personsDao = new PersonsDao();
+    private PersonsDao personsDao;
     private MutableLiveData<List<Persons>> personsLiveData;
 
-    public MainViewModel(){
+    @Inject
+    public MainViewModel(PersonsDao personsDao){
+        this.personsDao = personsDao;
         getAll();
         personsLiveData = personsDao.getPersons();
     }

@@ -17,6 +17,9 @@ import com.fatihyigit.contactsapp.R;
 import com.fatihyigit.contactsapp.databinding.FragmentPersonSaveBinding;
 import com.fatihyigit.contactsapp.ui.viewModel.PersonSaveViewModel;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class PersonSaveFragment extends Fragment {
     private FragmentPersonSaveBinding binding;
     private PersonSaveViewModel viewModel;

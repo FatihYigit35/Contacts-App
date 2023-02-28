@@ -30,6 +30,9 @@ import com.fatihyigit.contactsapp.ui.viewModel.MainViewModel;
 
 import java.util.ArrayList;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class MainFragment extends Fragment implements SearchView.OnQueryTextListener {
     private FragmentMainBinding binding;
     private MainViewModel viewModel;
