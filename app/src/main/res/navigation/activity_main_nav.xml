@@ -25,10 +25,17 @@
         <argument
             android:name="person"
             app:argType="com.fatihyigit.contactsapp.data.entity.Persons" />
+        <action
+            android:id="@+id/action_personDetailFragment_to_mainFragment"
+            app:popUpTo="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/personSaveFragment"
         android:name="com.fatihyigit.contactsapp.ui.fragment.PersonSaveFragment"
         android:label="fragment_person_save"
-        tools:layout="@layout/fragment_person_save" />
+        tools:layout="@layout/fragment_person_save" >
+        <action
+            android:id="@+id/action_personSaveFragment_to_mainFragment"
+            app:popUpTo="@id/mainFragment" />
+    </fragment>
 </navigation>

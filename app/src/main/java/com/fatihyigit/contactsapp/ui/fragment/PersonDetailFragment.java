@@ -46,8 +46,8 @@ public class PersonDetailFragment extends Fragment {
         viewModel = new ViewModelProvider(this).get(PersonDetailViewModel.class);
     }
 
-    public void buttonUpdate(int id, String name, String phone) {
-        viewModel.update(id, name, phone);
+    public void buttonUpdate(int id, String name, String phone, View v) {
+        viewModel.update(id, name, phone,v);
     }
 
 }

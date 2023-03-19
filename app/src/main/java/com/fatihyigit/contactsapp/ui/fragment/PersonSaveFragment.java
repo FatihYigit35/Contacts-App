@@ -39,7 +39,9 @@ public class PersonSaveFragment extends Fragment {
         viewModel = new ViewModelProvider(this).get(PersonSaveViewModel.class);
     }
 
-    public void buttonSave(String name, String phone){
-        viewModel.save(name, phone);
+    public void buttonSave(String name, String phone, View v){
+        viewModel.save(name, phone, v);
     }
+
+
 }

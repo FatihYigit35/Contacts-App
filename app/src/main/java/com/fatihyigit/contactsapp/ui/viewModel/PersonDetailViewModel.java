@@ -1,5 +1,7 @@
 package com.fatihyigit.contactsapp.ui.viewModel;
 
+import android.view.View;
+
 import androidx.lifecycle.ViewModel;
 
 import com.fatihyigit.contactsapp.data.repository.PersonsDaoRepository;
@@ -17,7 +19,7 @@ public class PersonDetailViewModel  extends ViewModel {
         this.personsDaoRepository = personsDaoRepository;
     }
 
-    public void update(int id, String name, String phone) {
-        personsDaoRepository.personUpdate(id, name, phone);
+    public void update(int id, String name, String phone, View v) {
+        personsDaoRepository.personUpdate(id, name, phone,v);
     }
 }

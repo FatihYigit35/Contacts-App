@@ -72,7 +72,7 @@
             android:layout_marginTop="60dp"
             android:layout_marginEnd="32dp"
             android:text="@string/save"
-            android:onClick="@{()->personSaveFragment.buttonSave(editTextName.getText().toString(),editTextPhone.getText().toString())}"
+            android:onClick="@{()->personSaveFragment.buttonSave(editTextName.getText().toString(),editTextPhone.getText().toString(),buttonSave)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />

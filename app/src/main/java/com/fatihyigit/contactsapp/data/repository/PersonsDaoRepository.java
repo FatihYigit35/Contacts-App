@@ -1,9 +1,12 @@
 package com.fatihyigit.contactsapp.data.repository;
 
 import android.util.Log;
+import android.view.View;
 
 import androidx.lifecycle.MutableLiveData;
+import androidx.navigation.Navigation;
 
+import com.fatihyigit.contactsapp.R;
 import com.fatihyigit.contactsapp.data.entity.Persons;
 import com.fatihyigit.contactsapp.room.PersonsDao;
 
@@ -46,7 +49,7 @@ public class PersonsDaoRepository {
                 });
     }
 
-    public void personSave(String name, String phone) {
+    public void personSave(String name, String phone, View v) {
         Persons person = new Persons(0,name,phone);
         personsDao.personSave(person).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -56,7 +59,7 @@ public class PersonsDaoRepository {
 
                     @Override
                     public void onComplete() {
-                        getAllPersons();
+                        Navigation.findNavController(v).navigate(R.id.action_personSaveFragment_to_mainFragment);
                     }
 
                     @Override
@@ -64,7 +67,7 @@ public class PersonsDaoRepository {
                 });
     }
 
-    public void personUpdate(int id, String name, String phone) {
+    public void personUpdate(int id, String name, String phone, View v) {
         Persons person = new Persons(id,name,phone);
         personsDao.personUpdate(person).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -73,7 +76,9 @@ public class PersonsDaoRepository {
                     public void onSubscribe(Disposable d) {}
 
                     @Override
-                    public void onComplete() {}
+                    public void onComplete() {
+                        Navigation.findNavController(v).navigate(R.id.action_personDetailFragment_to_mainFragment);
+                    }
 
                     @Override
                     public void onError(Throwable e) {}
