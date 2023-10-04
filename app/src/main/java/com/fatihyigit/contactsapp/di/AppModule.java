@@ -2,8 +2,8 @@ package com.fatihyigit.contactsapp.di;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
 import androidx.room.Room;
-import androidx.room.RoomDatabase;
 
 import com.fatihyigit.contactsapp.data.repository.PersonsDaoRepository;
 import com.fatihyigit.contactsapp.room.PersonsDao;
@@ -28,10 +28,17 @@ public class AppModule {
 
     @Provides
     @Singleton
-    public PersonsDao providesPersonsDao(@ApplicationContext Context context) {
-        PersonsDatabase db = Room.databaseBuilder(context,PersonsDatabase.class,"directory.sqlite")
-                .createFromAsset("directory.sqlite") //copy from file
-                .build();
+    public PersonsDao providesPersonsDao(@NonNull PersonsDatabase db) {
         return db.getPersonsDao();
+    }
+
+    @Provides
+    @Singleton
+    public PersonsDatabase providesPersonsDatabase(@ApplicationContext Context context) {
+//        return Room.databaseBuilder(context,PersonsDatabase.class,"directory.sqlite")
+//                .createFromAsset("directory.sqlite") //copy from file
+//                .build();
+
+        return Room.databaseBuilder(context,PersonsDatabase.class,"directory.sqlite").build();
     }
 }

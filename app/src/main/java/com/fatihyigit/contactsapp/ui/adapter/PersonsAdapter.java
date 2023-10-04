@@ -1,7 +1,6 @@
 package com.fatihyigit.contactsapp.ui.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -20,9 +19,9 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.List;
 
 public class PersonsAdapter extends RecyclerView.Adapter<PersonsAdapter.CardViewHolder> {
-    private Context mContext;
-    private List<Persons> persons;
-    private MainViewModel viewModel;
+    private final Context mContext;
+    private final List<Persons> persons;
+    private final MainViewModel viewModel;
 
     public PersonsAdapter(Context mContext, List<Persons> persons, MainViewModel viewModel) {
         this.mContext = mContext;
@@ -45,17 +44,12 @@ public class PersonsAdapter extends RecyclerView.Adapter<PersonsAdapter.CardView
 
         b.setPersonObject(person);
 
-        b.imageViewDelete.setOnClickListener(v -> {
-            Snackbar.make(v, person.getPerson_name() + " " + mContext.getResources().getString(R.string.delete) + "?", Snackbar.LENGTH_LONG)
-                    .setAction(mContext.getResources().getString(R.string.yes), v1 -> {
-                        viewModel.delete(person.getPerson_id());
-                    }).show();
-        });
+        b.imageViewDelete.setOnClickListener(v ->
+                Snackbar.make(v, person.getPersonName() + " " + mContext.getResources().getString(R.string.delete) + "?", Snackbar.LENGTH_LONG)
+                        .setAction(mContext.getResources().getString(R.string.yes), v1 -> viewModel.delete(person.getPersonId()))
+                        .show());
 
-        b.cardView.setOnClickListener(v -> {
-            MainFragmentDirections.ActionFragmentMainToPersonDetail mainToPersonDetail = MainFragmentDirections.actionFragmentMainToPersonDetail(person);
-            Navigation.findNavController(v).navigate(mainToPersonDetail);
-        });
+        b.cardView.setOnClickListener(v -> Navigation.findNavController(v).navigate(MainFragmentDirections.actionFragmentMainToPersonDetail(person)));
     }
 
     @Override
@@ -63,8 +57,8 @@ public class PersonsAdapter extends RecyclerView.Adapter<PersonsAdapter.CardView
         return persons.size();
     }
 
-    public class CardViewHolder extends RecyclerView.ViewHolder {
-        private CardDesignBinding binding;
+    public static class CardViewHolder extends RecyclerView.ViewHolder {
+        private final CardDesignBinding binding;
 
         public CardViewHolder(CardDesignBinding binding) {
             super(binding.getRoot());

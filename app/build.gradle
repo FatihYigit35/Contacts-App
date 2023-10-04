@@ -1,10 +1,12 @@
 plugins {
     id 'com.android.application'
+    id 'androidx.navigation.safeargs' //for data transfer with navigation
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
     namespace 'com.fatihyigit.contactsapp'
-    compileSdk 33
+    compileSdk 34
 
     buildFeatures {
         viewBinding true
@@ -13,8 +15,8 @@ android {
 
     defaultConfig {
         applicationId "com.fatihyigit.contactsapp"
-        minSdk 19
-        targetSdk 33
+        minSdk 22
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -33,30 +35,30 @@ android {
     }
 }
 
-apply plugin: "androidx.navigation.safeargs"
-
-apply plugin: "dagger.hilt.android.plugin"
 
 dependencies {
 
+    implementation(platform('org.jetbrains.kotlin:kotlin-bom:1.9.10'))
+
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.navigation:navigation-fragment:2.5.3'
-    implementation 'androidx.navigation:navigation-ui:2.5.3'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
+    implementation "androidx.navigation:navigation-fragment:$navigationVersion"
+    implementation "androidx.navigation:navigation-ui:$navigationVersion"
+
     //Hilt
-    implementation 'com.google.dagger:hilt-android:2.45'
-    annotationProcessor 'com.google.dagger:hilt-android-compiler:2.45'
+    implementation "com.google.dagger:hilt-android:$hiltVersion"
+    annotationProcessor "com.google.dagger:hilt-compiler:$hiltVersion"
 
     //Room
-    implementation 'androidx.room:room-runtime:2.5.0'
-    annotationProcessor 'androidx.room:room-compiler:2.5.0'
+    implementation "androidx.room:room-runtime:$roomVersion"
+    annotationProcessor "androidx.room:room-compiler:$roomVersion"
 
     //RxJava
-    implementation 'androidx.room:room-rxjava2:2.5.0'
+    implementation "androidx.room:room-rxjava2:$roomVersion"
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
 }

@@ -11,44 +11,43 @@ import java.io.Serializable;
 public class Persons implements Serializable {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "person_id")
-    @NonNull
-    private int person_id;
+    private int personId;
     @ColumnInfo(name = "person_name")
     @NonNull
-    private String person_name;
+    private String personName;
     @ColumnInfo(name = "person_phone")
     @NonNull
-    private String person_phone;
+    private String personPhone;
 
-    public Persons(int person_id, @NonNull String person_name, @NonNull String person_phone) {
-        this.person_id = person_id;
-        this.person_name = person_name;
-        this.person_phone = person_phone;
+    public Persons(int personId, @NonNull String personName, @NonNull String personPhone) {
+        this.personId = personId;
+        this.personName = personName;
+        this.personPhone = personPhone;
     }
 
-    public int getPerson_id() {
-        return person_id;
+    public int getPersonId() {
+        return personId;
     }
 
-    public void setPerson_id(int person_id) {
-        this.person_id = person_id;
-    }
-
-    @NonNull
-    public String getPerson_name() {
-        return person_name;
-    }
-
-    public void setPerson_name(@NonNull String person_name) {
-        this.person_name = person_name;
+    public void setPersonId(int personId) {
+        this.personId = personId;
     }
 
     @NonNull
-    public String getPerson_phone() {
-        return person_phone;
+    public String getPersonName() {
+        return personName;
     }
 
-    public void setPerson_phone(@NonNull String person_phone) {
-        this.person_phone = person_phone;
+    public void setPersonName(@NonNull String personName) {
+        this.personName = personName;
+    }
+
+    @NonNull
+    public String getPersonPhone() {
+        return personPhone;
+    }
+
+    public void setPersonPhone(@NonNull String personPhone) {
+        this.personPhone = personPhone;
     }
 }

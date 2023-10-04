@@ -39,7 +39,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextDetailName"
-                android:text="@{personObject.person_name}"
+                android:text="@{personObject.personName}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/name"
@@ -59,7 +59,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextDetailPhone"
-                android:text="@{personObject.person_phone}"
+                android:text="@{personObject.personPhone}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/phone_number"
@@ -75,7 +75,7 @@
             android:layout_marginTop="60dp"
             android:layout_marginEnd="32dp"
             android:text="@string/update"
-            android:onClick="@{()-> personDetailFragment.buttonUpdate(personObject.person_id,editTextDetailName.getText().toString(),editTextDetailPhone.getText().toString(),buttonUpdate)}"
+            android:onClick="@{()-> personDetailFragment.buttonUpdate(personObject.personId,editTextDetailName.getText().toString(),editTextDetailPhone.getText().toString(),buttonUpdate)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />

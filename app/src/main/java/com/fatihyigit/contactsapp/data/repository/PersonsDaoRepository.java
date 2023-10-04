@@ -1,6 +1,5 @@
 package com.fatihyigit.contactsapp.data.repository;
 
-import android.util.Log;
 import android.view.View;
 
 import androidx.lifecycle.MutableLiveData;
@@ -10,7 +9,6 @@ import com.fatihyigit.contactsapp.R;
 import com.fatihyigit.contactsapp.data.entity.Persons;
 import com.fatihyigit.contactsapp.room.PersonsDao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.CompletableObserver;
@@ -20,8 +18,8 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class PersonsDaoRepository {
-    private MutableLiveData<List<Persons>> personsLiveData;
-    private PersonsDao personsDao;
+    private final MutableLiveData<List<Persons>> personsLiveData;
+    private final PersonsDao personsDao;
 
     public PersonsDaoRepository(PersonsDao personsDao) {
         this.personsDao = personsDao;
